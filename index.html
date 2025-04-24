@@ -1,63 +1,80 @@
 <!DOCTYPE html>
- <html lang="de">
- <head>
-   <meta charset="UTF-8">
-   <title>Bilderkennung mit ml5.js</title>
-   <link rel="stylesheet" href="style.css">
-   <script src="https://cdn.jsdelivr.net/npm/ml5@latest/dist/ml5.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
- </head>
- <body>
-   <h1>Bilderkennung mit ml5.js</h1>
- 
-   <section class="grid">
-     <!-- R1: Beispielbilder -->
-     <div class="image-block">
-       <h2>Richtig Klassifizierte Bilder</h2>
-       <div id="correctImages"></div>
-     </div>
-     <div class="chart-block">
-       <canvas id="correctChart"></canvas>
-     </div>
- 
-     <div class="image-block">
-       <h2>Falsch Klassifizierte Bilder</h2>
-       <div id="wrongImages"></div>
-     </div>
-     <div class="chart-block">
-       <canvas id="wrongChart"></canvas>
-     </div>
- 
-     <!-- R2: Interaktive Klassifikation -->
-     <div class="image-block">
-       <h2>Bild hochladen</h2>
-       <input type="file" id="upload" accept="image/*" />
-       <img id="userImage" src="" alt="Ihr Bild" />
-       <button onclick="classifyUserImage()">Classify</button>
-     </div>
-     <div class="chart-block">
-       <canvas id="userChart"></canvas>
-     </div>
-   </section>
- 
-   <!-- Diskussion -->
-   <section>
-     <h2>Diskussion</h2>
-     <p id="discussionText"></p>
-   </section>
- 
-   <!-- Dokumentation -->
-   <section>
-     <h2>Dokumentation</h2>
-     <h3>Technisch</h3>
-     <ul>
-       <li><strong>ml5.js:</strong> Für Klassifikation mit MobileNet</li>
-       <li><strong>Chart.js:</strong> Für Visualisierung der Confidence-Werte</li>
-     </ul>
-     <h3>Fachlich</h3>
-     <p>Die Logik nutzt `ml5.imageClassifier`, um ein bestehendes Modell auf Bilder anzuwenden. Ergebnisse werden als Confidence ausgegeben und als Diagramm dargestellt. Daten stammen aus ImageNet.</p>
-   </section>
- 
-   <script src="script.js"></script>
- </body>
- </html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilderkennung mit ml5.js</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/ml5@latest/dist/ml5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Bilderkennung mit ml5.js</h1>
+
+  <section id="examples">
+    <h2>Richtig klassifizierte Bilder</h2>
+    <div class="row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Mops_oct09_cropped2.jpg" id="correct1">
+      <canvas id="correctChart1"></canvas>
+    </div>
+    <div class="row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" id="correct2">
+      <canvas id="correctChart2"></canvas>
+    </div>
+    <div class="row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" id="correct3">
+      <canvas id="correctChart3"></canvas>
+    </div>
+
+    <h2>Falsch klassifizierte Bilder</h2>
+    <div class="row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" id="wrong1">
+      <canvas id="wrongChart1"></canvas>
+    </div>
+    <div class="row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Red_Apple.jpg" id="wrong2">
+      <canvas id="wrongChart2"></canvas>
+    </div>
+    <div class="row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Closed_Laptop.jpg" id="wrong3">
+      <canvas id="wrongChart3"></canvas>
+    </div>
+  </section>
+
+  <section id="user">
+    <h2>Eigenes Bild</h2>
+    <div class="row">
+      <div>
+        <input type="file" id="upload" accept="image/*">
+        <img id="userImage" src="" alt="Benutzerbild">
+        <button onclick="classifyUserImage()">Classify</button>
+      </div>
+      <canvas id="userChart"></canvas>
+    </div>
+  </section>
+
+  <section>
+    <h2>Diskussion</h2>
+    <p id="discussionText">
+      Das Modell klassifiziert typische Objekte wie Hunde, Katzen und Tassen sehr gut. Schwierigkeiten treten bei ungewöhnlichen Blickwinkeln oder Bildkompositionen auf. Dies zeigt die Grenzen vortrainierter Modelle im Umgang mit Kontext und Störungen.
+    </p>
+  </section>
+
+  <section>
+    <h2>Dokumentation</h2>
+    <h3>1) Technisch</h3>
+    <ul>
+      <li><strong>ml5.js</strong>: Verwendet zur Bildklassifikation mit MobileNet.</li>
+      <li><strong>Chart.js</strong>: Visualisierung der Top-3-Klassen mit Konfidenzwerten.</li>
+    </ul>
+    <p>Die Anwendung ist rein clientseitig, benötigt keine Serverlogik und basiert vollständig auf Web-APIs.</p>
+
+    <h3>2) Fachlich</h3>
+    <p>
+      Die Logik basiert auf der Nutzung eines vortrainierten Klassifikationsmodells (MobileNet) aus ml5.js. Bilder werden entweder direkt geladen oder vom Benutzer hochgeladen. Die Klassifikation liefert Wahrscheinlichkeiten für die Top-Ergebnisse, die als Balkendiagramm dargestellt werden. Die Bilder stammen aus ImageNet über Wikimedia und wurden hinsichtlich korrekter/falscher Klassifikation vorausgewählt.
+    </p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
