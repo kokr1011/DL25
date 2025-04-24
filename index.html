@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Bilderkennung mit ml5.js</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/ml5@latest/dist/ml5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Bilderkennung mit ml5.js</h1>
+
+  <section class="grid">
+    <!-- R1: Beispielbilder -->
+    <div class="image-block">
+      <h2>Richtig Klassifizierte Bilder</h2>
+      <div id="correctImages"></div>
+    </div>
+    <div class="chart-block">
+      <canvas id="correctChart"></canvas>
+    </div>
+
+    <div class="image-block">
+      <h2>Falsch Klassifizierte Bilder</h2>
+      <div id="wrongImages"></div>
+    </div>
+    <div class="chart-block">
+      <canvas id="wrongChart"></canvas>
+    </div>
+
+    <!-- R2: Interaktive Klassifikation -->
+    <div class="image-block">
+      <h2>Bild hochladen</h2>
+      <input type="file" id="upload" accept="image/*" />
+      <img id="userImage" src="" alt="Ihr Bild" />
+      <button onclick="classifyUserImage()">Classify</button>
+    </div>
+    <div class="chart-block">
+      <canvas id="userChart"></canvas>
+    </div>
+  </section>
+
+  <!-- Diskussion -->
+  <section>
+    <h2>Diskussion</h2>
+    <p id="discussionText"></p>
+  </section>
+
+  <!-- Dokumentation -->
+  <section>
+    <h2>Dokumentation</h2>
+    <h3>Technisch</h3>
+    <ul>
+      <li><strong>ml5.js:</strong> Für Klassifikation mit MobileNet</li>
+      <li><strong>Chart.js:</strong> Für Visualisierung der Confidence-Werte</li>
+    </ul>
+    <h3>Fachlich</h3>
+    <p>Die Logik nutzt `ml5.imageClassifier`, um ein bestehendes Modell auf Bilder anzuwenden. Ergebnisse werden als Confidence ausgegeben und als Diagramm dargestellt. Daten stammen aus ImageNet.</p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
