@@ -46,4 +46,35 @@
     <div class="row">
       <div>
         <input type="file" id="upload" accept="image/*">
-        <img id="userImage" src="" alt="Benutzer
+        <img id="userImage" src="" alt="Benutzerbild">
+        <button onclick="classifyUserImage()">Classify</button>
+      </div>
+      <canvas id="userChart"></canvas>
+    </div>
+  </section>
+
+  <section>
+    <h2>Diskussion</h2>
+    <p id="discussionText">
+      Das Modell klassifiziert typische Objekte wie Hunde, Katzen und Tassen sehr gut. Schwierigkeiten treten bei ungewöhnlichen Blickwinkeln oder Bildkompositionen auf. Dies zeigt die Grenzen vortrainierter Modelle im Umgang mit Kontext und Störungen.
+    </p>
+  </section>
+
+  <section>
+    <h2>Dokumentation</h2>
+    <h3>1) Technisch</h3>
+    <ul>
+      <li><strong>ml5.js</strong>: Verwendet zur Bildklassifikation mit MobileNet.</li>
+      <li><strong>Chart.js</strong>: Visualisierung der Top-3-Klassen mit Konfidenzwerten.</li>
+    </ul>
+    <p>Die Anwendung ist rein clientseitig, benötigt keine Serverlogik und basiert vollständig auf Web-APIs.</p>
+
+    <h3>2) Fachlich</h3>
+    <p>
+      Die Logik basiert auf der Nutzung eines vortrainierten Klassifikationsmodells (MobileNet) aus ml5.js. Bilder werden entweder direkt geladen oder vom Benutzer hochgeladen. Die Klassifikation liefert Wahrscheinlichkeiten für die Top-Ergebnisse, die als Balkendiagramm dargestellt werden. Die Bilder stammen aus ImageNet über Wikimedia und wurden hinsichtlich korrekter/falscher Klassifikation vorausgewählt.
+    </p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
